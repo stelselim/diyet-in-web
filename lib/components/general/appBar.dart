@@ -4,4 +4,5 @@ Widget appBarWidget({@required String title}) {
   return AppBar(
     title: Text('Diyet-in'),
   );
+  
 }
