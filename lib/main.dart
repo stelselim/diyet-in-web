@@ -2,17 +2,18 @@ import 'package:diyetinweb/pages/Home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/':(context)=>App(),
-
-      },
-
-    )
-
-  );
+  
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      primarySwatch: Colors.green,
+      primaryColor: Colors.lightGreen,
+    ),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => App(),
+    },
+  ));
 }
 
 class App extends StatelessWidget {
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Home();
   }
 }
