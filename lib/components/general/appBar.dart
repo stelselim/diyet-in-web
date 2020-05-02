@@ -1,8 +1,6 @@
 import 'package:diyetinweb/utilities/urlLaunchers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 
 Widget appBarWidget({BuildContext context, @required String title}) {
   double width = MediaQuery.of(context).size.width;
@@ -13,45 +11,56 @@ Widget appBarWidget({BuildContext context, @required String title}) {
     return AppBar(
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(
-            urlOfIcon,
-            scale: 1.2,
+        child: GestureDetector(
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.transparent,
+            backgroundImage: NetworkImage(
+              urlOfIcon,
+              scale: 1.2,
+            ),
+            radius: 50,
           ),
-          radius: 50,
+          onTap: () {
+            Navigator.of(context).pushNamed("/");
+            print('Hey');
+          },
         ),
       ),
-      title: Text(
-        'Diyet-in',
-        style: appBarHeaderTextStyle,
+      title: GestureDetector(
+        child: Text(
+          'Diyet-in',
+          style: appBarHeaderTextStyle,
+        ),
+        onTap: () => Navigator.of(context).pushNamed("/"),
       ),
       actionsIconTheme: IconThemeData(size: 18),
       actions: <Widget>[
         IconButton(
           icon: Icon(FontAwesomeIcons.instagram),
-          onPressed: () =>launchInstagram(),
+          onPressed: () => launchInstagram(),
         ),
         IconButton(
-          icon: Icon(FontAwesomeIcons.facebook),
-          onPressed: () => launchFacebook()
-        ),
+            icon: Icon(FontAwesomeIcons.appStore),
+            onPressed: () => launchAppleStore()),
         IconButton(
-          icon: Icon(FontAwesomeIcons.twitter),
-          onPressed: ()=> launchTwitter(),
+          icon: Icon(FontAwesomeIcons.googlePlay),
+          onPressed: () => launchGooglePlay(),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 8.0,
           ),
           child: PopupMenuButton(
-            child: Icon(Icons.dehaze),
+            child: Icon(
+              Icons.dehaze,
+              size: 24,
+            ),
             onSelected: (value) {
-              if (value == 'Blog') print('Go Blog');
-              if (value == 'Tarifler') print('Go Tarif');
-              if (value == 'SSS') print('Go SSS');
-              if (value == 'Hakkımızda') print('Go about');
+              if (value == 'Blog') Navigator.pushNamed(context, '/Blog');
+              if (value == 'Tarif') Navigator.pushNamed(context, '/Recipe');
+              if (value == 'SSS')  Navigator.pushNamed(context, '/FAQ');
+              if (value == 'Hakkımızda')  Navigator.pushNamed(context, '/About');
             },
             itemBuilder: (context) {
               return [
@@ -89,19 +98,23 @@ Widget appBarWidget({BuildContext context, @required String title}) {
     return AppBar(
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(
-            urlOfIcon,
-            scale: 1.2,
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed("/"),
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.transparent,
+            backgroundImage: NetworkImage(
+              urlOfIcon,
+            ),
           ),
-          radius: 50,
         ),
       ),
-      title: Text(
-        'Diyet-in',
-        style: appBarHeaderTextStyle,
+      title: FlatButton(
+        onPressed: () => Navigator.of(context).pushNamed("/"),
+        child: Text(
+          'Diyet-in',
+          style: appBarHeaderTextStyle,
+        ),
       ),
       actionsIconTheme: IconThemeData(size: 18),
       actions: <Widget>[
@@ -111,7 +124,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Blog',
             style: buttonTextStyle,
           ),
-          onPressed: () {},
+          onPressed: () =>  Navigator.pushNamed(context, '/Blog'),
         ),
         FlatButton(
           colorBrightness: Brightness.light,
@@ -119,7 +132,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Tarifler',
             style: buttonTextStyle,
           ),
-          onPressed: () {},
+          onPressed: ()=> Navigator.pushNamed(context, '/Recipe'),
         ),
         FlatButton(
           colorBrightness: Brightness.light,
@@ -127,7 +140,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'SSS',
             style: buttonTextStyle,
           ),
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, '/FAQ'),
         ),
         FlatButton(
           colorBrightness: Brightness.light,
@@ -135,19 +148,18 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Hakkımızda',
             style: buttonTextStyle,
           ),
-          onPressed: () {},
+          onPressed: ()=> Navigator.pushNamed(context, '/About'),
         ),
         IconButton(
           icon: Icon(FontAwesomeIcons.instagram),
-          onPressed: () {},
+          onPressed: () => launchInstagram(),
         ),
         IconButton(
-          icon: Icon(FontAwesomeIcons.facebook),
-          onPressed: () {},
-        ),
+            icon: Icon(FontAwesomeIcons.appStore),
+            onPressed: () => launchAppleStore()),
         IconButton(
-          icon: Icon(FontAwesomeIcons.twitter),
-          onPressed: () {},
+          icon: Icon(FontAwesomeIcons.googlePlay),
+          onPressed: () => launchGooglePlay(),
         ),
       ],
     );
@@ -161,5 +173,5 @@ final appBarHeaderTextStyle = TextStyle(
 final buttonTextStyle = TextStyle(
   color: Colors.black54,
   fontSize: 18,
-  fontWeight: FontWeight.w400
+  fontWeight: FontWeight.w400,
 );

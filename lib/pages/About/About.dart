@@ -3,8 +3,8 @@ import 'package:diyetinweb/components/general/appBar.dart';
 // import 'package:firebase/firestore.dart' as fs;
 import 'package:flutter/material.dart';
 
-class Blog extends StatelessWidget {
-  const Blog({Key key}) : super(key: key);
+class About extends StatelessWidget {
+  const About({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class Blog extends StatelessWidget {
         physics: ScrollPhysics(),
         children: <Widget>[
           /// Blog Yazıları
-         Text('BLog KISMI'),
+         Text('Hakkımızda KISMI'),
         ],
       ),
     );
