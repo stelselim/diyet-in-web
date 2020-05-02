@@ -7,7 +7,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
   String urlOfIcon =
       "https://lh3.googleusercontent.com/i1hhu2Y_zw5o3jER8H7llvhkCID3Lw05fQ8G8sbNE1LyK-WKzuo3K0ux9Re-fVPGORQ=s360-rw";
 
-  if (width < 600) {
+  if (width < 620) {
     return AppBar(
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -111,10 +111,15 @@ Widget appBarWidget({BuildContext context, @required String title}) {
       ),
       title: FlatButton(
         onPressed: () => Navigator.of(context).pushNamed("/"),
-        child: Text(
+        child: 
+        MediaQuery.of(context).size.width>745?
+        Text(
           'Diyet-in',
           style: appBarHeaderTextStyle,
-        ),
+        )
+        :
+        null
+        ,
       ),
       actionsIconTheme: IconThemeData(size: 18),
       actions: <Widget>[
