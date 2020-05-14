@@ -1,3 +1,4 @@
+import 'package:diyetinweb/a-largeScreen/pages/Home/largeHome.dart';
 import 'package:diyetinweb/pages/About/About.dart';
 import 'package:diyetinweb/pages/Blog/Blog.dart';
 import 'package:diyetinweb/pages/FAQ/FAQ.dart';
@@ -28,6 +29,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if(MediaQuery.of(context).size.width>650){
+      return LargeHome();
+    }
+
     return Home();
   }
 }

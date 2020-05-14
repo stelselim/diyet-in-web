@@ -7,20 +7,14 @@ class RecipeCard extends StatelessWidget {
     DocumentSnapshot recipeData,
   });
 
-  Widget smallScreen() {
-    return Container();
-  }
-
-  Widget largeScreen() {
-    return Container();
-  }
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width > 500)
-      return largeScreen();
-    else {
-      return smallScreen();
-    }
+    return Container(
+      color: Colors.blue,
+      alignment: Alignment.center,
+      height: 125,
+      child: Text("se"),
+    );
   }
 }

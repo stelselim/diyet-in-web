@@ -2,13 +2,6 @@ import 'package:diyetinweb/utilities/urlLaunchers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-<<<<<<< HEAD
-Widget appBarWidget({@required String title}) {
-  return AppBar(
-    title: Text('Diyet-in'),
-  );
-  
-=======
 Widget appBarWidget({BuildContext context, @required String title}) {
   double width = MediaQuery.of(context).size.width;
   String urlOfIcon =
@@ -17,16 +10,15 @@ Widget appBarWidget({BuildContext context, @required String title}) {
   if (width < 620) {
     return AppBar(
       leading: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: GestureDetector(
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             foregroundColor: Colors.transparent,
             backgroundImage: NetworkImage(
               urlOfIcon,
-              scale: 1.2,
+              scale: 0.5,
             ),
-            radius: 50,
           ),
           onTap: () {
             Navigator.of(context).pushNamed("/");
@@ -37,11 +29,11 @@ Widget appBarWidget({BuildContext context, @required String title}) {
       title: GestureDetector(
         child: Text(
           'Diyet-in',
-          style: appBarHeaderTextStyle,
+          style: smallAppBarHeaderTextStyle,
         ),
         onTap: () => Navigator.of(context).pushNamed("/"),
       ),
-      actionsIconTheme: IconThemeData(size: 18),
+      actionsIconTheme: IconThemeData(size: 14),
       actions: <Widget>[
         IconButton(
           icon: Icon(FontAwesomeIcons.instagram),
@@ -56,12 +48,12 @@ Widget appBarWidget({BuildContext context, @required String title}) {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
+            horizontal: 5.0,
           ),
           child: PopupMenuButton(
             child: Icon(
               Icons.dehaze,
-              size: 24,
+              size: 16,
             ),
             onSelected: (value) {
               if (value == 'Blog') Navigator.pushNamed(context, '/Blog');
@@ -176,7 +168,6 @@ Widget appBarWidget({BuildContext context, @required String title}) {
       ],
     );
   }
->>>>>>> components
 }
 
 final appBarHeaderTextStyle = TextStyle(
@@ -187,4 +178,9 @@ final buttonTextStyle = TextStyle(
   color: Colors.black54,
   fontSize: 18,
   fontWeight: FontWeight.w400,
+);
+
+final smallAppBarHeaderTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
 );
