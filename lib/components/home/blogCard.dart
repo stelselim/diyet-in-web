@@ -11,6 +11,13 @@ class BlogCard extends StatelessWidget {
 
   Widget smallScreen(context) {
     String pictureURL = blogData.data()["Resim"];
+
+    final width = MediaQuery.of(context).size.width;
+
+    String header = blogData.data()['Başlık'];
+    if (header.length > 19) {
+      header = header.substring(0, 18) + '...';
+    }
     String characters =
         blogData.data()["BlogYazısı"] + blogData.data()["AnaDüşünce"];
 
@@ -19,33 +26,50 @@ class BlogCard extends StatelessWidget {
     timeToRead = timeToRead.round();
 
     return AspectRatio(
-      aspectRatio: 1.1,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * 0.19,
-            padding: EdgeInsets.symmetric(vertical: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              image: DecorationImage(
-                image: NetworkImage(pictureURL),
-                fit: BoxFit.cover,
+      aspectRatio: 1,
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 5,
+              child: AspectRatio(
+                aspectRatio: 3,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          pictureURL,
+                        ),
+                        fit: BoxFit.cover),
+                  ),
+                ),
               ),
             ),
-          ),
-          Text(
-            blogData.data()["Başlık"],
-            softWrap: true,
-            textAlign: TextAlign.center,
-            style: blogTitleStyle,
-          ),
-          Text(
-            "$timeToRead Dakika Okuma",
-            textAlign: TextAlign.center,
-            style: blogMinuteStyle,
-          ),
-        ],
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 6.0),
+                child: Column(
+                  children: [
+                    Text(
+                      "$header",
+                      textAlign: TextAlign.center,
+                      style: blogTitleStyle,
+                      textScaleFactor: 1.1,
+                    ),
+                    Text(
+                      "$timeToRead Dakika Okuma",
+                      style: blogMinuteStyle,
+                      textScaleFactor: 0.9
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -58,13 +82,13 @@ class BlogCard extends StatelessWidget {
 
 const blogTitleStyle = TextStyle(
   decorationColor: Colors.black54,
-  fontSize: 13,
+//  fontSize: 13,
   fontWeight: FontWeight.w500,
   color: Colors.black87,
 );
 const blogMinuteStyle = TextStyle(
   decorationColor: Colors.black45,
-  fontSize: 11,
+//  fontSize: 11,
   fontWeight: FontWeight.w300,
   color: Colors.grey,
 );

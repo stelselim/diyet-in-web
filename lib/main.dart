@@ -1,8 +1,10 @@
-import 'package:diyetinweb/a-largeScreen/pages/Home/largeHome.dart';
 import 'package:diyetinweb/pages/About/About.dart';
+import 'package:diyetinweb/lib-large/pages/Home/largeHome.dart';
 import 'package:diyetinweb/pages/Blog/Blog.dart';
 import 'package:diyetinweb/pages/FAQ/FAQ.dart';
 import 'package:diyetinweb/pages/Home/home.dart';
+import 'package:diyetinweb/pages/ReadingPages/blogReading.dart';
+import 'package:diyetinweb/pages/ReadingPages/recipeReading.dart';
 import 'package:diyetinweb/pages/Recipe/Recipe.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,10 @@ void main() {
       '/Recipe': (context) => Recipe(),
       '/FAQ': (context) => FAQ(),
       '/About':(context)=>About(),
+
+      '/blogread':(context)=>BlogReadingPage(),
+      '/reciperead':(context)=>RecipeReadingPage(),
+
     },
   ));
 }

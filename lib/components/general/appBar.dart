@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget appBarWidget({BuildContext context, @required String title}) {
   double width = MediaQuery.of(context).size.width;
-  String urlOfIcon =
-      "https://lh3.googleusercontent.com/i1hhu2Y_zw5o3jER8H7llvhkCID3Lw05fQ8G8sbNE1LyK-WKzuo3K0ux9Re-fVPGORQ=s360-rw";
+  String assetImage = "assets/icon.png";
 
   if (width < 620) {
     return AppBar(
@@ -15,14 +14,10 @@ Widget appBarWidget({BuildContext context, @required String title}) {
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             foregroundColor: Colors.transparent,
-            backgroundImage: NetworkImage(
-              urlOfIcon,
-              scale: 0.5,
-            ),
+            backgroundImage: AssetImage(assetImage),
           ),
           onTap: () {
             Navigator.of(context).pushNamed("/");
-            print('Hey');
           },
         ),
       ),
@@ -33,63 +28,63 @@ Widget appBarWidget({BuildContext context, @required String title}) {
         ),
         onTap: () => Navigator.of(context).pushNamed("/"),
       ),
-      actionsIconTheme: IconThemeData(size: 14),
       actions: <Widget>[
         IconButton(
-          icon: Icon(FontAwesomeIcons.instagram),
+          icon: Icon(
+            FontAwesomeIcons.instagram,
+            size: 20,
+          ),
           onPressed: () => launchInstagram(),
         ),
         IconButton(
-            icon: Icon(FontAwesomeIcons.appStore),
+            icon: Icon(FontAwesomeIcons.appStore, size: 20),
             onPressed: () => launchAppleStore()),
         IconButton(
-          icon: Icon(FontAwesomeIcons.googlePlay),
+          icon: Icon(FontAwesomeIcons.googlePlay, size: 20),
           onPressed: () => launchGooglePlay(),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5.0,
+        PopupMenuButton(
+          child: Icon(
+            Icons.dehaze,
+            size: 25,
           ),
-          child: PopupMenuButton(
-            child: Icon(
-              Icons.dehaze,
-              size: 16,
-            ),
-            onSelected: (value) {
-              if (value == 'Blog') Navigator.pushNamed(context, '/Blog');
-              if (value == 'Tarif') Navigator.pushNamed(context, '/Recipe');
-              if (value == 'SSS')  Navigator.pushNamed(context, '/FAQ');
-              if (value == 'Hakkımızda')  Navigator.pushNamed(context, '/About');
-            },
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  child: ListTile(
-                    title: Text('Blog'),
-                  ),
-                  value: 'Blog',
+          onSelected: (value) {
+            if (value == 'Blog') Navigator.pushNamed(context, '/Blog');
+            if (value == 'Tarif') Navigator.pushNamed(context, '/Recipe');
+            if (value == 'SSS') Navigator.pushNamed(context, '/FAQ');
+            if (value == 'Hakkımızda') Navigator.pushNamed(context, '/About');
+          },
+          itemBuilder: (context) {
+            return [
+              PopupMenuItem(
+                child: ListTile(
+                  title: Text('Blog'),
                 ),
-                PopupMenuItem(
-                  child: ListTile(
-                    title: Text('Tarifler'),
-                  ),
-                  value: 'Tarif',
+                value: 'Blog',
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  title: Text('Tarifler'),
                 ),
-                PopupMenuItem(
-                  child: ListTile(
-                    title: Text('SSS'),
-                  ),
-                  value: 'SSS',
+                value: 'Tarif',
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  title: Text('SSS'),
                 ),
-                PopupMenuItem(
-                  child: ListTile(
-                    title: Text('Hakkımızda'),
-                  ),
-                  value: 'Hakkımızda',
+                value: 'SSS',
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  title: Text('Hakkımızda'),
                 ),
-              ];
-            },
-          ),
+                value: 'Hakkımızda',
+              ),
+            ];
+          },
+        ),
+        SizedBox(
+          width: 5,
         ),
       ],
     );
@@ -102,23 +97,20 @@ Widget appBarWidget({BuildContext context, @required String title}) {
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             foregroundColor: Colors.transparent,
-            backgroundImage: NetworkImage(
-              urlOfIcon,
+            backgroundImage: AssetImage(
+              assetImage,
             ),
           ),
         ),
       ),
       title: FlatButton(
         onPressed: () => Navigator.of(context).pushNamed("/"),
-        child: 
-        MediaQuery.of(context).size.width>745?
-        Text(
-          'Diyet-in',
-          style: appBarHeaderTextStyle,
-        )
-        :
-        null
-        ,
+        child: MediaQuery.of(context).size.width > 745
+            ? Text(
+                'Diyet-in',
+                style: appBarHeaderTextStyle,
+              )
+            : null,
       ),
       actionsIconTheme: IconThemeData(size: 18),
       actions: <Widget>[
@@ -128,7 +120,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Blog',
             style: buttonTextStyle,
           ),
-          onPressed: () =>  Navigator.pushNamed(context, '/Blog'),
+          onPressed: () => Navigator.pushNamed(context, '/Blog'),
         ),
         FlatButton(
           colorBrightness: Brightness.light,
@@ -136,7 +128,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Tarifler',
             style: buttonTextStyle,
           ),
-          onPressed: ()=> Navigator.pushNamed(context, '/Recipe'),
+          onPressed: () => Navigator.pushNamed(context, '/Recipe'),
         ),
         FlatButton(
           colorBrightness: Brightness.light,
@@ -152,7 +144,7 @@ Widget appBarWidget({BuildContext context, @required String title}) {
             'Hakkımızda',
             style: buttonTextStyle,
           ),
-          onPressed: ()=> Navigator.pushNamed(context, '/About'),
+          onPressed: () => Navigator.pushNamed(context, '/About'),
         ),
         IconButton(
           icon: Icon(FontAwesomeIcons.instagram),
@@ -171,8 +163,9 @@ Widget appBarWidget({BuildContext context, @required String title}) {
 }
 
 final appBarHeaderTextStyle = TextStyle(
+  fontWeight: FontWeight.w400,
+  color: Colors.blueGrey.shade700,
   fontSize: 25,
-  fontWeight: FontWeight.w500,
 );
 final buttonTextStyle = TextStyle(
   color: Colors.black54,
@@ -181,6 +174,7 @@ final buttonTextStyle = TextStyle(
 );
 
 final smallAppBarHeaderTextStyle = TextStyle(
+  fontWeight: FontWeight.w400,
+  color: Colors.blueGrey.shade700,
   fontSize: 18,
-  fontWeight: FontWeight.w500,
 );
